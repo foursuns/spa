@@ -1,0 +1,96 @@
+<mat-toolbar>
+  <div fxLayout="row" fxFlex="20">
+    <button class="toolbar-icon" mat-icon-button matTooltip="Volta" matTooltipClass="tooltip-red" 
+      (click)="onBack()">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+  </div>
+  <div fxLayout="row" fxFlex="60" fxLayoutAlign="center center">
+    <span>Lista de Produtos</span>
+  </div>
+  <div fxLayout="row" fxFlex="20" fxLayoutAlign="end">
+    <button class="toolbar-icon" mat-icon-button matTooltip="Pesquisa" matTooltipClass="tooltip-red">
+      <mat-icon>search</mat-icon>
+    </button>
+    <button class="toolbar-icon" mat-icon-button matTooltip="Atualiza" matTooltipClass="tooltip-red" 
+      (click)="onRefresh()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+    <button class="toolbar-icon" mat-icon-button matTooltip="Novo Produto" matTooltipClass="tooltip-red">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<div class="container-table">
+  <table mat-table [dataSource]="listProdutos" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <mat-header-cell fxFlex="05" *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell fxFlex="05" *matCellDef="let element">{{ element.id }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="categoria">
+      <mat-header-cell fxFlex="10" *matHeaderCellDef mat-sort-header>Categoria</mat-header-cell>
+      <mat-cell fxFlex="10" *matCellDef="let element">{{ element.categoria }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="nome">
+      <mat-header-cell fxFlex="10" *matHeaderCellDef mat-sort-header>Nome</mat-header-cell>
+      <mat-cell fxFlex="10" *matCellDef="let element">{{ element.nome }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="descricao">
+      <mat-header-cell fxFlex="45" *matHeaderCellDef mat-sort-header>Descrição</mat-header-cell>
+      <mat-cell fxFlex="45" *matCellDef="let element">{{ element.descricao }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="preco">
+      <mat-header-cell fxFlex="10" *matHeaderCellDef mat-sort-header>Preço</mat-header-cell>
+      <mat-cell fxFlex="10" *matCellDef="let element">{{ element.preco | number:'1.2-2' }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="promocao">
+      <mat-header-cell fxFlex="05" *matHeaderCellDef mat-sort-header>Promoção</mat-header-cell>
+      <mat-cell fxFlex="05" fxLayoutAlign="center center" *matCellDef="let element">
+        <span *ngIf="!element.promocao"><mat-icon>cancel</mat-icon></span>
+        <span *ngIf="element.promocao"><mat-icon>check_circle</mat-icon></span>
+      </mat-cell>
+    </ng-container>
+          
+    <ng-container matColumnDef="opcoes">
+      <mat-header-cell fxFlex fxLayoutAlign="end center" *matHeaderCellDef></mat-header-cell>
+      <mat-cell fxFlex fxLayoutAlign="end center" *matCellDef="let row">
+        <button mat-icon-button matTooltip="Edita" matTooltipClass="tooltip-red">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Exclui" matTooltipClass="tooltip-red">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+        
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </mat-footer-cell>
+    </ng-container>
+        
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell fxLayoutAlign="center center" *matFooterCellDef colspan="6">
+        Nenhum registro encontrado.
+      </mat-footer-cell>
+    </ng-container>
+        
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"
+      [ngClass]="{'highlight': selectedRowIndex == row.id}" (click)="onHighlight(row)">
+    </mat-row>
+    <mat-footer-row *matFooterRowDef="['loading']"
+      [ngClass]="{ hide: listProdutos != null }">
+    </mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']"
+      [ngClass]="{ hide: !(listProdutos != null && listProdutos.length === 0) }">
+    </mat-footer-row>
+  </table>
+        
+  <mat-paginator
+    [pageSizeOptions]="[10, 25, 50, 100]"
+    [pageSize]="10"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>

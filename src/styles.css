@@ -1,1 +1,159 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  
+.mat-header-row mat-header-cell {
+    color: black;
+    font-weight: bold;
+    font-size:12px;
+}
+  
+.mat-row mat-cell {
+    font-size: 12px;
+}
+ 
+.mat-footer-row mat-footer-cell {
+    font-size: 12px;
+    font-weight: bold;
+}
+  
+.mat-toolbar {
+    background-color: green;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hide {
+    display: none;
+}
+  
+.title {
+    font-size: large;
+    font-weight: 300;
+    padding: 0 14px;
+}
+  
+.subtitle {
+    font-size: large;
+    font-weight: 300;
+}
+  
+.label {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.highlight {
+    background: #FFF9C4;
+}
+  
+table {
+    width: 100%;
+}
+
+.mat-paginator {
+    width: 100%;
+}  
+
+.button {
+    color: white;
+    background-color: #FF6D00;
+    align-self: center;
+    font-size: medium;
+    font-weight: 400;
+    width: 50px;
+}
+
+    
+/***************************/
+/***      CONTAINER      ***/
+/***************************/
+
+.container-master {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+  
+.container-master > * {
+    width: 100%;
+}
+
+.container-card {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh;
+    width: 100%;
+}
+  
+.container-card > * {
+    width: 100%;
+}
+
+.container-table-full {
+    display: flex;
+    flex-direction: column;
+    height: 88vh;
+    width: 100%;
+    background-color: white;
+}
+  
+.container-table-full > * {
+    width: 100%;
+}
+
+.container-table {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 100%;
+    background-color: white;
+}
+  
+.container-table > * {
+    width: 100%;
+}
+
+.container-table-small {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: white;
+}
+
+.container-search {
+    display: flex;
+    flex-direction: column;
+    height: 64px;
+    width: 100%;
+    margin-top: 0px;
+    background-color: #ECEFF1;
+}
+
+.container-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+    background-color: white;
+  }
+  
+.container-form > * {
+    width: 100%;
+}
+
+.toolbar-icon {
+    padding: 0 14px;
+}
+
+.button-spacer {
+    flex: 1 1 auto;
+}
+  
+.tooltip-red {
+    background: darkred;
+}
